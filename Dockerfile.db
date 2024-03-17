@@ -1,0 +1,14 @@
+# Use the official MySQL image as the base image
+FROM mysql:latest
+
+# Set environment variables for MySQL
+ENV MYSQL_DATABASE=chromerce
+ENV MYSQL_ROOT_PASSWORD=password
+ENV MYSQL_USER=chromerce
+ENV MYSQL_PASSWORD=password
+
+# Copy custom initialization scripts to be executed on container startup
+COPY ./db /docker-entrypoint-initdb.d
+
+# Expose the MySQL port (not mandatory as it's already exposed in the parent image)
+EXPOSE 3306
